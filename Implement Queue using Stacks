@@ -1,0 +1,49 @@
+ class Node:
+
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+
+class MyQueue:
+
+    def __init__(self, head=None, tail=None, size=0):
+        self.head = head
+        self.tail = tail
+        self.size = size
+
+    def push(self, x: int) -> None:
+        newNode = Node(x)
+        if self.size == 0:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            self.tail.next = newNode
+            self.tail = newNode
+        self.size += 1
+
+    def pop(self) -> int:
+        if self.size != 0:
+            temp = self.head
+            self.head = temp.next
+            val = temp.data
+            del temp
+        self.size -= 1
+        return val
+
+    def peek(self) -> int:
+        if self.size != 0:
+            value = self.head
+        return value.data
+
+    def empty(self) -> bool:
+        return self.size == 0
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+
